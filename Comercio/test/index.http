@@ -1,0 +1,41 @@
+GET http://localhost:1234/api/comercio
+###
+GET http://localhost:1234/api/comercio/79 HTTP/1.1
+### 
+POST http://localhost:1234/api/comercio HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre_comercio": "Uber",
+    "cif": "79",
+    "direccion": "calle Perales, Madrid",
+    "email": "lolo@gmail.com",
+    "telefono": "692304293",
+    "id": 2
+}
+###
+PUT http://localhost:1234/api/comercio/80 HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre_comercio": "Uber",
+    "cif": "80",
+    "direccion": "calle Perales, Madrid",
+    "email": "primero@gmail.com",
+    "telefono": "692304293",
+    "id": 2
+}
+###
+PUT http://localhost:1234/api/comercio/28 HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre_comercio": "Airbnb",
+    "cif": 28,
+    "direccion": "calle Juancarlos, Madrid",
+    "email": "lolo@gmail.com",
+    "telefono": "683747814",
+    "id": 1
+}
+###
+DELETE http://localhost:1234/api/comercio/80 HTTP/1.1
