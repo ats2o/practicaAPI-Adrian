@@ -1,0 +1,52 @@
+GET http://localhost:1234
+/api/web
+
+###
+GET http://localhost:1234
+/api/web/6717c794b83363ed38a2a6e9
+
+###
+POST http://localhost:1234
+/api/web
+Content-Type: application/json
+
+{
+    "Ciudad": "Pepe",
+    "Actividad": "Poca",
+    "Titulo": "foto",
+    "Resumen": "segunda foto",
+    "Array_textos": [],
+    "Array_imagenes": [],
+    "resenas_user": {
+        "Scoring": 3, 
+        "Numero_puntuaciones": 5,
+        "Resenas": "Muy buena"
+    }
+}
+
+###
+PUT http://localhost:1234
+/api/web/6717c794b83363ed38a2a6e9
+Content-Type: application/json
+
+{
+    "Ciudad": "Galicia",
+    "Actividad": "Mucha",
+    "Titulo": "Nueva foto",
+    "Resumen": "Primera foto",
+    "Array_textos": [],
+    "Array_imagenes": [],
+    "resenas_user": {
+        "Scoring": 4, 
+        "Numero_puntuaciones": 4,
+        "Resenas": "Buena"
+    }
+}
+
+###
+DELETE http://localhost:1234
+/api/web/logical/6717c94429a923e80e2ef09b
+
+###
+DELETE http://localhost:1234
+/api/web/6717c94429a923e80e2ef09b

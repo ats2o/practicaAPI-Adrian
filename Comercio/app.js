@@ -10,7 +10,7 @@ const app = express();
 // Middleware para parsear JSON en las solicitudes
 app.use(express.json());
 
-// 
+// Importa y usa las rutas definidas en el archivo 'routes.js' para cualquier solicitud que comience con '/api'
 app.use('/api', require('./routes'))
 
 // Importar el módulo mongoose para interactuar con MongoDB
