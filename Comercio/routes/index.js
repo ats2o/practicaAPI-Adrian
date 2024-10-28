@@ -16,5 +16,6 @@ fs.readdirSync(__dirname).filter((file) => {
     }
 });
 
-// Exportar el enrutador para que pueda ser usado en otros archivos
-module.exports = comercio
+const router = express.Router();
+router.use('/someResource', require('./someResource'));
+module.exports = router;
