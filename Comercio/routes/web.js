@@ -3,7 +3,7 @@ const express = require('express') // Importo la funcion express
 const { getItems, getItem, createItem, updateItem, deleteItem, deleteItemLogical} = require('../controller/web')
 
 // Importo todas las variables del archivo web de la carpeta controller para usarlas mas tarde
-const { validateGetItem, validateCreateItem } = require('../validators/web')
+const { validateGetItem, validateCreateItem, validateUpdateItem } = require('../validators/web')
 
 // Importo los validadores para verificaciones como en el (GET, POST, PUT, DELETE)
 const web = express.Router()
@@ -17,7 +17,7 @@ web.get('/:id', validateGetItem, getItem) // Obtinene la web por su id
 web.post('/', validateCreateItem, createItem)
 
 // PUT
-web.put('/:id', validateGetItem, validateCreateItem, updateItem)
+web.put('/:id', validateGetItem, validateUpdateItem, updateItem)
 
 // DELETE
 web.delete('/:id', validateGetItem, deleteItem)

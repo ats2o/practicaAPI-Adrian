@@ -24,5 +24,20 @@ const validateGetItem = [
     (req, res, next) => validateResults(req, res, next)
 ]
 
+const validateUpdateItem = [
+    check("id").exists().notEmpty().isMongoId(),
+    check("Ciudad").optional().isString(),
+    check("Actividad").optional().isString(),
+    check("Titulo").optional().isString(),
+    check("Resumen").optional().isString(),
+    check("Array_textos").optional().isArray(),
+    check("Array_imagenes").optional().isArray(),
+    check("resenas_user").optional(),
+    check("resenas_user.Scoring").optional().isNumeric().isInt({ min: 0, max: 5 }),
+    check("resenas_user.Numero_puntuaciones").optional().isNumeric(),
+    check("resenas_user.Resenas").optional().isString(),
+    (req, res, next) => validateResults(req, res, next)
+];
+
 // Exporto las variables validateGetItem y validateCreateItem para que pueda usarse en otros archivos
-module.exports = { validateCreateItem, validateGetItem}
+module.exports = { validateCreateItem, validateGetItem, validateUpdateItem}

@@ -11,8 +11,9 @@ app.use('/api', require('./routes'))
 // Importar el módulo mongoose para interactuar con MongoDB
 const mongoose = require('mongoose');
 
-// const morganBody = require("morgan-body")
-// const { IncomingWebhook } = require("@slack/webhook")
+const morganBody = require("morgan-body")
+const { IncomingWebhook } = require("@slack/webhook")
+const loggerStream = require("./utils/handleLogger")
 
 // Imprimir el valor de la variable de entorno PORT en la consola
 console.log(process.env.PORT);
@@ -38,20 +39,13 @@ app.listen(port, () => {
   // Llamar a la función para conectar a la base de datos
   connect();
 });
-
-// const webHook = new IncomingWebhook(process.env.SLACK_WEBHOOK)
-// const loggerStream = {
-//   write: message => {
-//     webHook.send({
-//       text: message
-//     })
-//   },
-// }
-
-// morganBody(app, {
-//   noColors: true, //limpiamos el String de datos lo máximo posible antes de mandarlo a Slack
-//   skip: function (req, res) { //Solo enviamos errores (4XX de cliente y 5XX de servidor)
-//     return res.statusCode < 400
-//   },
-//   stream: loggerStream
-// })
+// Crear una instancia de IncomingWebhook con la URL del webhook de Slack
+const webHook = new IncomingWebhook(process.env.SLACK_WEBHOOK)
+// Agregar un middleware para enviar los errores a Slack
+morganBody(app, {
+  noColors: true, //limpiamos el String de datos lo máximo posible antes de mandarlo a Slack
+  skip: function (req, res) { //Solo enviamos errores (4XX de cliente y 5XX de servidor)
+    return res.statusCode < 400
+  },
+  stream: loggerStream
+})
