@@ -1,20 +1,18 @@
 // Cargar las variables de entorno desde el archivo .env
 require('dotenv').config();
-
 // Importar el módulo express
 const express = require('express');
-
 // Crear una instancia de la aplicación express
 const app = express();
-
 // Middleware para parsear JSON en las solicitudes
 app.use(express.json());
-
 // Importa y usa las rutas definidas en el archivo 'routes.js' para cualquier solicitud que comience con '/api'
 app.use('/api', require('./routes'))
-
 // Importar el módulo mongoose para interactuar con MongoDB
 const mongoose = require('mongoose');
+
+// const morganBody = require("morgan-body")
+// const { IncomingWebhook } = require("@slack/webhook")
 
 // Imprimir el valor de la variable de entorno PORT en la consola
 console.log(process.env.PORT);
@@ -36,7 +34,24 @@ const port = process.env.PORT || 1234;
 
 // Iniciar el servidor y escuchar en el puerto definido
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-    // Llamar a la función para conectar a la base de datos
-    connect();
+  console.log(`Server running on port ${port}`);
+  // Llamar a la función para conectar a la base de datos
+  connect();
 });
+
+// const webHook = new IncomingWebhook(process.env.SLACK_WEBHOOK)
+// const loggerStream = {
+//   write: message => {
+//     webHook.send({
+//       text: message
+//     })
+//   },
+// }
+
+// morganBody(app, {
+//   noColors: true, //limpiamos el String de datos lo máximo posible antes de mandarlo a Slack
+//   skip: function (req, res) { //Solo enviamos errores (4XX de cliente y 5XX de servidor)
+//     return res.statusCode < 400
+//   },
+//   stream: loggerStream
+// })
