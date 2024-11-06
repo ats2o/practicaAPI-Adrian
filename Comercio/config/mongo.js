@@ -22,7 +22,6 @@ const dbconnection = () => {
         // Si ocurre un error durante la conexión, imprime un mensaje de error en la consola
         console.err('DB connection failed');
     }
-    
     // Escucha el evento 'connect' en la conexión de mongoose y, si ocurre, imprime un mensaje en la consola
     mongoose.connection.on("connect", () => console.log("DB connected"));
 }
