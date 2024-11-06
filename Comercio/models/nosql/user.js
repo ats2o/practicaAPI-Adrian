@@ -19,6 +19,9 @@ const UserSchema = new mongoose.Schema({
     permiteRecibirOfertas: { type: Boolean, default: false },
     // Campo 'role' de tipo String, con valores permitidos 'user' o 'admin', y valor por defecto 'user'
     role: { type: String, enum: ['user', 'admin'], default: 'user' }
+}, {
+    timestamps: true, // Añade campos 'createdAt' y 'updatedAt' al documento
+    versionKey: false // Desactiva el campo '__v' que Mongoose usa para el control de versiones
 });
 
 // Exporta el modelo 'user' basado en el esquema UserSchema

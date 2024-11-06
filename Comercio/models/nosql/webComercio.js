@@ -7,8 +7,13 @@ const mongooseDelete = require('mongoose-delete')
 // Define un nuevo esquema de mongoose llamado webComercio
 const webComercio = new mongoose.Schema(
     {
+        comercioCif: {
+            type: String,
+            required: true,
+            unique: true
+        },
         // Campo Ciudad de tipo String
-        Ciudad : {
+        Ciudad: {
             type: String
         },
         // Campo Actividad de tipo String
@@ -26,7 +31,7 @@ const webComercio = new mongoose.Schema(
         // Campo Array_textos que es un array de Strings
         Array_textos: {
             type: [String]
-        }, 
+        },
         // Campo Array_imagenes que es un array de Strings
         Array_imagenes: {
             type: [String]
@@ -47,18 +52,18 @@ const webComercio = new mongoose.Schema(
             Resenas: {
                 type: String
             },
-        }, 
+        },
     },
     {
         // Habilita la creación automática de timestamps (createdAt y updatedAt)
-        timestamp: true, 
+        timestamp: true,
         // Desactiva la creación del campo __v (versionKey)
         versionKey: false
     }
 )
 
 // Aplica el plugin mongoose-delete al esquema webComercio para habilitar el borrado lógico
-webComercio.plugin(mongooseDelete, {overrideMethods: "all"})
+webComercio.plugin(mongooseDelete, { overrideMethods: "all" })
 
 // Exporta el modelo webComercio basado en el esquema definido
 module.exports = (mongoose.model("webComercio", webComercio))

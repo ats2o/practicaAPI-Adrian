@@ -1,5 +1,7 @@
 // Este archivo "comercio.js" en validators se va a encargar de a la hora de las peticiones validarlas
+
 const { check } = require('express-validator') // Importo la funcion check
+
 const validateResults = require('../utils/handleValidator') 
 // Importo este archivoo que validara que todos los resultados qeu se quieran mandar estan bien
 
@@ -22,5 +24,10 @@ const validateGetItem = [
     }
 ]
 
+const validateLogin = [
+    check("email").exists().notEmpty(),
+    (req, res, next) => validateResults(req, res, next)
+]
+
 // Exporto las variables validateGetItem y validateCreateItem para que pueda usarse en otros archivos
-module.exports = { validateGetItem, validateCreateItem }
+module.exports = { validateGetItem, validateCreateItem, validateLogin }

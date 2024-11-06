@@ -10,10 +10,11 @@ app.use(express.json());
 app.use('/api', require('./routes'))
 // Importar el módulo mongoose para interactuar con MongoDB
 const mongoose = require('mongoose');
-
 const morganBody = require("morgan-body")
 const { IncomingWebhook } = require("@slack/webhook")
 const loggerStream = require("./utils/handleLogger")
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpecs = require("./docs/swagger");
 
 // Imprimir el valor de la variable de entorno PORT en la consola
 console.log(process.env.PORT);
@@ -49,3 +50,6 @@ morganBody(app, {
   },
   stream: loggerStream
 })
+
+// Documentación Swagger
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
